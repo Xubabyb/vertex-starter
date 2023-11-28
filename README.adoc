@@ -1,0 +1,80 @@
+= Vertex-starter
+
+image:https://img.shields.io/badge/vert.x-4.5.0-purple.svg[link="https://vertx.io"]
+
+== Основные понятия
+
+*1. Vert.x Object* - основной объект Vertx, ядро всей системы (центр управления),
+с его помощью создаются серверы, клиенты взаимодействия с шиной событий и т.д.
+(org.dshid.vertex_starter.MainVerticle.class)
+
+*2. Vert.x Verticles* - модель развертывания и параллелизма в мире Vert.x.
+Обычно приложение состоит из нескольких вертиклей (фрагмент кода),
+каждый из которых выполняется в своем потоке (для неблокирующих операция в event loop thread),
+и обменивается сообщениями с другими через шину событий (event bus).
+
+В качестве примера (package _/src/main/java/org/dshid/vertex_starter/verticles_) есть основной verticle который развертывает дочерние и т.д.
+При запуске _org/dshid/vertex_starter/verticles/VerticleExampleMain.java_ можно увидеть
+разворачивание verticles от родительского к дочерним в своих потоках (event-loop-thread)
+
+.Лог запуска вертиклов
+image::src/main/resources/images/verticles_log.png[]
+
+Примеры скалирования вертиклов в пакете _/src/main/java/org/dshid/vertex_starter/scaling_
+
+*3. Event Loop Threads* - по умолчанию код вертиклов выполняется в неблокирующем цикле событий.
+Можно представить в виде очереди из ивентов, которые выполняются ассинхронно,
+минимизируя время простоя ЦПУ которое наблюдается при работе с блокирующими операциями
+
+.Многопоточная работы с блокирующими операциями
+image::src/main/resources/images/blocking_io.png[]
+
+.Неблокирующий цикл событий
+image::src/main/resources/images/eventloops_images.png[]
+
+Eсть операции, которые блокируются по своей природе, например, традиционный доступ к реляционной базе данных.
+доступ к файлам или просто ожидание ответов сети,
+поскольку операций блокировки избежать невозможно. Подобные события можно выполнять в так называемых рабочих потоках _Worker Thread_.
+
+Кроме того, Vertex имеет встроенную программу проверки блокировки потоков, которая предупреждает, когда цикл событий блокируется.
+
+Выглядит это
+
+.Лог срабатывания проверки блокировок
+image::src/main/resources/images/work_blocker_check.png[]
+
+Примеры с коментариями в пакете _src/main/java/org/dshid/vertex_starter/eventloops_
+
+* https://vertx.io/introduction-to-vertx-and-reactive[более подробная информация тут]
+
+*4. Worker Threads* - потоки для выполнения блокирующих операций.
+
+Примеры с коментариями в пакете _src/main/java/org/dshid/vertex_starter/worker_
+
+//
+// This application was generated using http://start.vertx.io
+//
+// == Building
+//
+// To launch your tests:
+// ```
+// ./gradlew clean test
+// ```
+//
+// To package your application:
+// ```
+// ./gradlew clean assemble
+// ```
+//
+// To run your application:
+// ```
+// ./gradlew clean run
+// ```
+
+== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://www.baeldung.com/vertx[Baeldung Vert.x]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+
+
