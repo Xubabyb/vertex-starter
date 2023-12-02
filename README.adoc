@@ -48,9 +48,25 @@ image::src/main/resources/images/work_blocker_check.png[]
 * https://vertx.io/introduction-to-vertx-and-reactive[более подробная информация тут]
 
 *4. Worker Threads* - потоки для выполнения блокирующих операций.
+Несколько вариант работы с блокирующими вызовами, либо внутри вертикла выполняем внутри worker threads
+, либо целиком вертикл помещаем работать в worker thread.
 
 Примеры с коментариями в пакете _src/main/java/org/dshid/vertex_starter/worker_
 
+*5. Event Bus* - шина событий, используется для взаимодействия между вертиклами(каждый из которых выполняется в своем потоке).
+Шина обеспечивает управляемую событиями связь неблокирующим потокобезопасным способом, и существует в единственном экземпляре(нечто вроде нервной системы vert.x)
+
+.Шина событий
+image::src/main/resources/images/event_bus.png[]
+Шина событий поддерживает три способа обмена сообщениями:
+
+* Первый — это публикация сообщений о подписке. (_Publish / subscribe messages_)
+* Второй обмен сообщениями «point to point». (_Point-to-point messaging_)
+* Третий обмен сообщениями с запросом ответа. (_Request-response messaging_)
+
+Примеры с коментариями в пакете: _src/main/java/org/dshid/vertex_starter/eventbus_
+
+* https://blog.knoldus.com/event-bus-in-vert-x-how-it-works[более подробная информация тут]
 //
 // This application was generated using http://start.vertx.io
 //
