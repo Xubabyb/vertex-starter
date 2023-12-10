@@ -32,7 +32,7 @@ public class RequestResponseExampleJSON {
         .put("version", 1);
       LOG.info("Sending: {}", message);
 
-      eventBus.<JsonObject>request(           //Vertex не определяет схему адреса шины событий,
+      eventBus.<JsonArray>request(           //Vertex не определяет схему адреса шины событий,
         ADDRESS,
         // нормальная практика использовать имя класса отправителя, но подойдет любая строка
         message,
