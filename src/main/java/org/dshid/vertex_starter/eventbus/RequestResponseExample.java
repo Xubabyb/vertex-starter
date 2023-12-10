@@ -17,7 +17,6 @@ public class RequestResponseExample {
 
   static class RequestVerticle extends AbstractVerticle {
 
-
     private static final Logger LOG = LogManager.getLogger(RequestVerticle.class);
     static final String ADDRESS = "mu.request.address";
 
@@ -29,13 +28,13 @@ public class RequestResponseExample {
       final String message = "Hello World!";
       LOG.info("Sending: {}", message);
 
-
-
       eventBus.<String>request(           //Vertex не определяет схему адреса шины событий,
-        ADDRESS,                          // нормальная практика это использовать имя класса отправителя, но подойдет любая строка
-        message,                          // второй параметр это сообщение, принимает: строки, объекты вертикла, пользовательские объекты
-        reply -> {                        // это callback  на поступление ответа
-
+        ADDRESS,
+        // нормальная практика использовать имя класса отправителя, но подойдет любая строка
+        message,
+        // второй параметр это сообщение, принимает: строки, объекты вертикла, пользовательские объекты
+        reply -> {
+          //  callback  на поступление ответа
           LOG.info("Response: {}", reply.result().body());
 
         });
@@ -50,13 +49,14 @@ public class RequestResponseExample {
     public void start(Promise<Void> startPromise) throws Exception {
       startPromise.complete();
 
-      vertx.eventBus().<String>consumer(RequestVerticle.ADDRESS, message -> {
+      vertx.eventBus().<String>consumer(RequestVerticle.ADDRESS,
+        message -> {
 
-        LOG.info("Received message: {}", message.body());
+          LOG.info("Received message: {}", message.body());
 
-        message.reply("Successfully received message"); //Ответ на реквест
+          message.reply("Successfully received message"); //Ответ на реквест
 
-      });
+        });
     }
   }
 
