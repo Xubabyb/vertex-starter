@@ -15,6 +15,7 @@ repositories {
 }
 
 val vertxVersion = "4.5.0"
+val jacksonVersion = "2.15.3"
 val loggingVersion = "2.22.0"
 val junitJupiterVersion = "5.9.1"
 
@@ -34,6 +35,7 @@ dependencies {
   implementation ("org.apache.logging.log4j:log4j-api")
   implementation ("org.apache.logging.log4j:log4j-core")
   implementation("io.vertx:vertx-core")
+  implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
   testImplementation("io.vertx:vertx-junit5")
   testImplementation("org.junit.jupiter:junit-jupiter:$junitJupiterVersion")
 }
