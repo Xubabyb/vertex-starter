@@ -68,7 +68,15 @@ image::src/main/resources/images/event_bus.png[]
 
 * https://blog.knoldus.com/event-bus-in-vert-x-how-it-works[более подробная информация тут]
 
-*6. Future and Promise* -
+*6. Future and Promise*
+
+*_Promise_* - используется для записи конечного значения и может быть выполнено или помечено как невыполненное.
+
+*_Future_* - используется для чтения значения из обещания, когда оно доступно.
+
+Наглядная демонстрация _src/test/java/org/dshid/vertex_starter/TestFuturePromiseExample.java_
+
+
 
 //
 // This application was generated using http://start.vertx.io
