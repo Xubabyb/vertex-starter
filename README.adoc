@@ -6,21 +6,21 @@ image:https://img.shields.io/badge/vert.x-4.5.0-purple.svg[link="https://vertx.i
 
 *1. Vert.x Object* - основной объект Vertx, ядро всей системы (центр управления),
 с его помощью создаются серверы, клиенты взаимодействия с шиной событий и т.д.
-(org.dshid.vertex_starter.MainVerticle.class)
+link:src/main/java/org/dshid/vertex_starter/MainVerticle.java[_MainVerticle_]
 
 *2. Vert.x Verticles* - модель развертывания и параллелизма в мире Vert.x.
 Обычно приложение состоит из нескольких вертиклей (фрагмент кода),
 каждый из которых выполняется в своем потоке (для неблокирующих операция в event loop thread),
 и обменивается сообщениями с другими через шину событий (event bus).
 
-В качестве примера (package _/src/main/java/org/dshid/vertex_starter/verticles_) есть основной verticle который развертывает дочерние и т.д.
-При запуске _org/dshid/vertex_starter/verticles/VerticleExampleMain.java_ можно увидеть
+link:src/main/java/org/dshid/vertex_starter/verticles[В качестве примера] есть основной verticle который развертывает дочерние и т.д.
+При запуске link:src/main/java/org/dshid/vertex_starter/verticles/VerticleExampleMain.java[_VerticleExampleMain_] можно увидеть
 разворачивание verticles от родительского к дочерним в своих потоках (event-loop-thread)
 
 .Лог запуска вертиклов
 image::src/main/resources/images/verticles_log.png[]
 
-Примеры скалирования вертиклов в пакете _/src/main/java/org/dshid/vertex_starter/scaling_
+link:src/main/java/org/dshid/vertex_starter/scaling[_Примеры скалирования вертиклов_]
 
 *3. Event Loop Threads* - по умолчанию код вертиклов выполняется в неблокирующем цикле событий.
 Можно представить в виде очереди из ивентов, которые выполняются ассинхронно,
@@ -43,7 +43,7 @@ Eсть операции, которые блокируются по своей 
 .Лог срабатывания проверки блокировок
 image::src/main/resources/images/work_blocker_check.png[]
 
-Примеры с коментариями в пакете _src/main/java/org/dshid/vertex_starter/eventloops_
+link:src/main/java/org/dshid/vertex_starter/eventloops[_Примеры с коментариями_]
 
 * https://vertx.io/introduction-to-vertx-and-reactive[более подробная информация тут]
 
@@ -51,7 +51,7 @@ image::src/main/resources/images/work_blocker_check.png[]
 Несколько вариант работы с блокирующими вызовами, либо внутри вертикла выполняем внутри worker threads
 , либо целиком вертикл помещаем работать в worker thread.
 
-Примеры с коментариями в пакете _src/main/java/org/dshid/vertex_starter/worker_
+link:src/main/java/org/dshid/vertex_starter/worker[_Примеры с коментариями_]
 
 *5. Event Bus* - шина событий, используется для взаимодействия между вертиклами(каждый из которых выполняется в своем потоке).
 Шина обеспечивает управляемую событиями связь неблокирующим потокобезопасным способом, и существует в единственном экземпляре(нечто вроде нервной системы vert.x)
@@ -60,11 +60,11 @@ image::src/main/resources/images/work_blocker_check.png[]
 image::src/main/resources/images/event_bus.png[]
 Шина событий поддерживает три способа обмена сообщениями:
 
-* Первый — это публикация сообщений о подписке. _(Publish / subscribe messages)_
-* Второй обмен сообщениями «point to point». _(Point-to-point messaging)_
-* Третий обмен сообщениями с запросом ответа. _(Request-response messaging)_
+* Первый — это публикация сообщений о подписке. link:src/main/java/org/dshid/vertex_starter/eventbus/PublishSubscribeExample.java[_Publish / subscribe messages_]
+* Второй обмен сообщениями «point to point». link:src/main/java/org/dshid/vertex_starter/eventbus/PointToPointExample.java[_Point-to-point messaging_]
+* Третий обмен сообщениями с запросом ответа. link:src/main/java/org/dshid/vertex_starter/eventbus/RequestResponseExample.java[_Request-response messaging_]
 
-Примеры с коментариями в пакете: _src/main/java/org/dshid/vertex_starter/eventbus_
+link:src/main/java/org/dshid/vertex_starter/eventbus[_Примеры с коментариями_]
 
 * https://blog.knoldus.com/event-bus-in-vert-x-how-it-works[более подробная информация тут]
 
@@ -74,7 +74,8 @@ image::src/main/resources/images/event_bus.png[]
 
 *_Future_* - используется для чтения значения из обещания, когда оно доступно.
 
-Наглядная демонстрация _src/test/java/org/dshid/vertex_starter/TestFuturePromiseExample.java_
+link:src/test/java/org/dshid/vertex_starter/TestFuturePromiseExample.java[_Демонстрация_]
+
 
 
 
